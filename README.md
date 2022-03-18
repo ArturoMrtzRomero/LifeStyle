@@ -1,2 +1,2 @@
-# FitStyle
-FitStyle Web Page - Team 4 - E-Business I
+# LifeStyle
+LifeStyle Web Page - Team 4 - E-Business I
