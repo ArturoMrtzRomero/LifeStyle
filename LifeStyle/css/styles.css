@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 *,
@@ -339,11 +340,11 @@ template {
 
 :root {
     /*Colores*/
-    --dark: #333333;
-    --dark-light: #999999;
-    --primary: #00c8c8;
-    --dark-lighten: #f8f8f8;
-    --border-dark-light: solid 1px rgba(153, 153, 153, 0.29);
+    --dark: #02b1b1;
+    --dark-light: #02b1b1;/*categorias*/
+    --primary: #ff954f;/*secciones*/
+    --dark-lighten: #ddeeee;
+    --border-dark-light: solid 1px rgb(226, 119, 57);/*linea*/
     /*Tamaños de tipografía*/
     /*  --titulo-h1: 32px;
     --body-font-size: 13px;
@@ -411,7 +412,7 @@ footer {
     bottom: 0;
     z-index: 100;
     border: var(--border-dark-light);
-    background: #ffffff;
+    background: #f79341;
     transition: 0.5s;
     transform: translateX(-100%);
 }
@@ -645,11 +646,11 @@ footer {
         top: 56px;
         display: flex;
         flex-wrap: wrap;
-        -moz-box-shadow: 1px 6px 18px rgba(94, 94, 94, 0.5);
+        -moz-box-shadow: 1px 6px 18px rgba(0, 0, 0, 0.712);
         /*FF 3.5+*/
-        -webkit-box-shadow: 1px 6px 18px rgba(94, 94, 94, 0.5);
+        -webkit-box-shadow: 1px 6px 18px rgba(0, 0, 0, 0.596);
         /*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
-        box-shadow: 1px 6px 18px rgba(94, 94, 94, 0.5);
+        box-shadow: 1px 6px 18px rgba(0, 0, 0, 0.658);
         /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
         height: auto;
     }
@@ -699,7 +700,7 @@ footer {
     justify-content: center;
     align-items: center;
     position: relative;
-    color: #ffffff;
+    color: #000000bd;
 }
 
 .banner-container .title {
@@ -735,7 +736,7 @@ footer {
     justify-content: center;
     align-items: center;
     position: relative;
-    color: #ffffff;
+    color: #000000;
 }
 
 .banner-container .title {
@@ -762,7 +763,7 @@ footer {
 
 .banner-second::before {
     content: "";
-    background: #000000;
+    background: #ff86527c;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -805,7 +806,7 @@ footer {
 .card {
     width: 100%;
     position: relative;
-    background: #ffffff;
+    background: #000000;
     margin-top: 1rem;
     cursor: pointer;
 }
@@ -820,7 +821,7 @@ footer {
 }
 
 .card .card-buttons .btn:hover {
-    color: #ffffff;
+    color: #000000;
 }
 
 .card:hover,
@@ -966,7 +967,7 @@ footer {
 }
 
 .footer-solcials-link {
-    color: #ffffff;
+    color: #000000;
     font-size: 2em;
 }
 
