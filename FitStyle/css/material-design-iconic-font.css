@@ -57,12 +57,12 @@
 }
 .zmdi-hc-border {
   padding: .1em .25em;
-  border: solid 0.1em #9e9e9e;
+  border: solid 0.1em #ee5a5a;
   border-radius: 2px;
 }
 .zmdi-hc-border-circle {
   padding: .1em .25em;
-  border: solid 0.1em #9e9e9e;
+  border: solid 0.1em #fc0202;
   border-radius: 50%;
 }
 .zmdi.pull-left {
