@@ -1294,7 +1294,7 @@ body{
 }
 
 .wrap > h1{
-	color: #494B4D;
+	color: #dbaeff;
 	font-weight: 400;
 	display: flex;
 	flex-direction: column;
@@ -1326,15 +1326,16 @@ body{
 	width: 90%;
 	padding: 15px 0;
 	margin-bottom: 20px;
-	background: #E84C3D;
+	background: #aeb6ff;
 
 	text-align: center;
 	text-decoration: none;
-	color: #fff;
+	color: rgb(0, 0, 0);
 }
 
 .category_list .ct_item-active{
-	background: #2D3E50;
+	background: #000000;
+    color: rgb(255, 255, 255);
 }
 
 /* PRODUCTOS ============*/
@@ -1350,7 +1351,7 @@ body{
 	width: 22%;
 	margin-left: 3%;
 	margin-bottom: 25px;
-	box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.22);
+	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.22);
 
 	display: flex;
 	flex-direction: column;
@@ -1368,9 +1369,9 @@ body{
 	display: block;
 	width: 100%;
 	padding: 8px 0;
-	background: #2D3E50;
+	background: #aeb6ff;
 
-	color: #fff;
+	color: rgb(0, 0, 0);
 	text-align: center;
 	text-decoration: none;
 }
