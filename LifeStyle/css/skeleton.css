@@ -158,9 +158,9 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-  color: #fc98ff; }
+  color: #98c8ff; }
 a:hover {
-  color: #fc98ff; }
+  color: #98c8ff; }
 
 
 /* Buttons
@@ -206,8 +206,8 @@ input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
   color: #FFF;
-  background-color: #fc98ff;
-  border-color: #fc98ff; }
+  background-color: #98c8ff;
+  border-color: #98c8ff; }
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -219,8 +219,8 @@ input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
   color: #FFF;
-  background-color: #fc98ff;
-  border-color: #fc98ff; }
+  background-color: #98c8ff;
+  border-color: #98c8ff; }
 
 
 /* Forms
@@ -266,7 +266,7 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  border: 1px solid #fc98ff;
+  border: 1px solid #98c8ff;
   outline: 0; }
 label,
 legend {

@@ -804,9 +804,15 @@ footer {
 .card {
     width: 100%;
     position: relative;
-    background: #000000;
+    background: #7272726b;/*------------------------------------color de la tarjeta del carrito-----------------------------------*/
     margin-top: 1rem;
     cursor: pointer;
+    
+}
+
+.card h4, p{
+    color: white;
+    font-size: 22px;
 }
 
 .card .price {
@@ -824,7 +830,7 @@ footer {
 
 .card:hover,
 .card-info {
-    box-shadow: 1px 1px 13px 2px rgba(94, 94, 94, 0.5);
+    box-shadow: 1px 1px 13px 2px rgba(255, 255, 255, 0.5);
 }
 
 .card-info {
@@ -917,7 +923,65 @@ footer {
     background: var(--dark-lighten);
     color: var(--primary);
 }
+/******************************************************************************************/
 
+
+
+.borrar-platilo {
+    background-color: #e1a0ff;
+    border-radius: 50%;
+    padding: 5px 10px;
+    text-decoration: none;
+    color:rgba(255, 169, 244, 0.342);
+    font-weight: bold;
+
+}
+
+.vacio {
+ 
+    background-color: #98c8ff;
+    text-align: center;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+}
+.button {
+    background-color: #98c8ff;
+    color: rgb(255, 255, 255);
+}
+.footer-link{
+    font-size:15px;
+}
+.has-text-weight-bold{
+    font-size:18px;
+}
+
+.agregar-carrito{
+    margin: 10px 0;
+}
+
+.info-card .precio {
+    text-decoration: line-through;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.info-card .precio span {
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.footer {
+    margin-top: 40px;
+  
+    padding-top: 40px;
+    background: #f6caff;
+}
+
+.footer .menu a {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+/*************************************************************************************************/
 .footer {
     background: var(--dark-lighten);
     margin-top: 1rem;
