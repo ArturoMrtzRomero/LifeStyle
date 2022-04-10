@@ -804,15 +804,20 @@ footer {
 .card {
     width: 100%;
     position: relative;
-    background: #7272726b;/*------------------------------------color de la tarjeta del carrito-----------------------------------*/
-    margin-top: 1rem;
+    background: #202020b9;/*------------------------------------color de la tarjeta del carrito-----------------------------------*/
+   
     cursor: pointer;
-    
+    margin: 2rem;   
+}
+.info-card{
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .card h4, p{
     color: white;
     font-size: 22px;
+
 }
 
 .card .price {
@@ -963,10 +968,13 @@ footer {
     text-decoration: line-through;
     font-size: 18px;
     margin-top: 10px;
+
 }
 .info-card .precio span {
     font-weight: 700;
     font-size: 22px;
+   
+
 }
 
 .footer {
