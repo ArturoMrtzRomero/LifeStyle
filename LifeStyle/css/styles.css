@@ -57,6 +57,16 @@ pre {
     font-size: 1em;
     /* 2 */
 }
+.modulo_pago{
+    background-color:var(--white-color);
+    box-shadow: var(--box);
+    padding:var(--space-2);
+    }
+
+.confirmar-btn{
+    background-color: #98c8ff;
+    color: rgb(255, 255, 255);
+}
 
 /* Text-level semantics
    ========================================================================== */

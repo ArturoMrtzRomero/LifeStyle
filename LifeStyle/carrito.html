@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/bulma.min.css">
     <link rel="stylesheet" href="css/material-design-iconic-font.css">
     <link rel="stylesheet" href="css/styles.css">
-
+    
 </head>
 <body>
 
@@ -103,47 +103,72 @@
                     </ul>
                 </nav>
             </nav>
-       
-        <div class="container">
-            <div class="row">
-                <div class="ten columns" style="height:500px;
-                width: 600px;">
-                    <h1><br><br><img src="img/banner-large.jpg" alt=""></h1>
-                </div>
-                <div class="two columns u-pull-right" style="height:150px;
-                width: 400px;">
-                    <ul>
-                        <li class="submenu">
-                            <img src="img/cart.png" alt="">
-                            <div id="carrito">
-                                <h1 class="vacio"><br><br>Carrito </h1>
-                                <table id="lista-carrito" class="u-full-width">
-                                    <thead>
-                                        <tr>
-                                            <th>Imagen</th>
-                                           
-                                            <th>Descripcion</th>
-                                       
-                                            <th>Precio</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                    </tbody>
-                                </table>
-                                <a href="#" id="realizar-pedido"
-                                class="button u-full-width">Realizar Pedido</a>
-
-                                <a href="#" id="vaciar-carrito"
-                                class="button u-full-width">vaciar carrito</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </header>
+</br>
+</br>
+</br>
+</br>
+</br>
+<!-- div carrito-->
+    <div class="container" style="text-align: center; border-radius: 5px;">
+        <div class="modul-pago">
+            <!--div productos-->
+            <div class="modul-pago" >
+                <ul>
+                    <li class="submenu">
+                        <img src="img/cart.png" alt="">
+                        <div class="col" id="carrito">
+                            <h1 class="vacio"><br><br>Carrito </h1>
+                            <table id="lista-carrito" class="u-full-width">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                       
+                                        <th>Descripcion</th>
+                                   
+                                        <th>Precio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                </tbody>
+                            </table>
+                            <a href="#" id="vaciar-carrito"
+                            class="button u-full-width">vaciar carrito</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- fin div productos-->
 
+            <!--div formulario de pago-->
+            <div class="col">
+                <form action="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RYGUJ53Y5RZX8" method="post">
+                  <label for="name">Nombre</label>
+                  <br>
+                  <input type="text" placeholder="" name="name" class="data">
+                  <br>
+                  <label for="email">E-mail</label>
+                  <br>
+                  <input type="text" placeholder="" name="email" class="data">
+                  <br>
+                  <label for="phone">Teléfono</label>
+                  <br>
+                  <input type="text" placeholder="" name="phone" class="data">
+                  <br>
+                  <br>
+                  <input type="submit" style="background-color: #98c8ff;
+                  color: rgb(255, 255, 255);" class="button u-full-width" name="submit" value="Confirmar pago">
+                </form>
+            </div>
+            <!-- fin formulario pago-->
+        </div>
+    </div>
+    <!--fin div carrito-->
+
+</br>
+</br>
+</br>
     <div class="hero">
         <div class="container"> 
             <div class="row">  
