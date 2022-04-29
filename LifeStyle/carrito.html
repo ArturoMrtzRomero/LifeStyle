@@ -13,6 +13,14 @@
     <link rel="stylesheet" href="css/bulma.min.css">
     <link rel="stylesheet" href="css/material-design-iconic-font.css">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/carrito.js">
+    </script>
+    
+    <style type="text/css">
+        #premio{
+            display: none;
+        }
+    </style>    
     
 </head>
 <body>
@@ -116,7 +124,7 @@
             <div class="modul-pago" >
                 <ul>
                     <li class="submenu">
-                        <img src="img/cart.png" alt="">
+                        
                         <div class="col" id="carrito">
                             <h1 class="vacio"><br><br>Carrito </h1>
                             <table id="lista-carrito" class="u-full-width">
@@ -141,27 +149,219 @@
             </div>
             <!-- fin div productos-->
 
-            <!--div formulario de pago-->
-            <div class="col">
-                <form action="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RYGUJ53Y5RZX8" method="post">
-                  <label for="name">Nombre</label>
-                  <br>
-                  <input type="text" placeholder="" name="name" class="data">
-                  <br>
-                  <label for="email">E-mail</label>
-                  <br>
-                  <input type="text" placeholder="" name="email" class="data">
-                  <br>
-                  <label for="phone">Teléfono</label>
-                  <br>
-                  <input type="text" placeholder="" name="phone" class="data">
-                  <br>
-                  <br>
-                  <input type="submit" style="background-color: #98c8ff;
-                  color: rgb(255, 255, 255);" class="button u-full-width" name="submit" value="Confirmar pago">
-                </form>
+            <!-- inicio select metoro de pago-->
+            <div style="text-align: left;">
+                <div class="col">
+                    <div>
+                        <h1>Métodos de pago</h1>
+                    </div>
+                    <br>
+                    <div class="comet-modal-body _3cxb5 payment-container-body">
+                        <div>
+                            <div class="_3XyWj _1rrmm" style="cursor: pointer;">
+                            <div class="_1E0MP">
+                                <div class="_1pt-x">
+                                    <label class="comet-radio _1r41D ">
+                                        <span class="comet-radio-icon">
+                                            <span class="comet-radio-circle">
+                                            </span>
+                                        </span>
+                                        <input onclick="mostrarTarjeta();" type="radio" id="ckeckTarjeta" class="comet-radio-input" value="">
+                                    </label>
+                                    <img style="display: inline-block;
+                                    height: 18px;" src="https://ae01.alicdn.com/kf/H5610a69ab1f046658a7ea9f880cb7798P.png" class="_2rrML">
+                                    <span class="fIWiQ ">Pagar con tarjeta</span>
+                            
+                                        <!-- inicio tarjeta-->
+                                        <div id="premio">
+                                            <div >
+                                                <div>
+                                                    <div class="_3XyWj _1rrmm" style="cursor: pointer;">
+                                                        <div class="_1E0MP">
+                                                            <div class="_1pt-x" 
+                                                                style="display: flex; align-items: center; justify-content: flex-start; ">
+                                                                    <img src="https://gw.alicdn.com/tfs/TB14OuErqNj0u4jSZFyXXXgMVXa-88-62.png" class="_2rrML">
+                                                                    <h1>Añade una nueva tarjeta</h1>
+                                                                    <div class="_15f38 _3iUAH">
+                                                                        <img class="_2VI4X" src="https://img.alicdn.com/tfs/TB1xcMWdEKF3KVjSZFEXXXExFXa-68-48.png">
+                                                                        <img class="_2VI4X" src="https://img.alicdn.com/tfs/TB19TEYdB1D3KVjSZFyXXbuFpXa-53-48.png">
+                                                                        <img class="_2VI4X" src="https://img.alicdn.com/tfs/TB18So3dBKw3KVjSZFOXXarDVXa-41-48.png">
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div style="display: flex;  justify-content: space-between; border: solid;" >
+                                                                    <div style=" border: solid;   width: 1000px;
+                                                                    margin-bottom: 16px;">
+                                                                    
+                                                                        <span>
+                                                                            <input minlength="10" style="
+                                                                            height: 50px; font-size: 20px; width: '900px';" placeholder="Número de la tarjeta"  id="cardNum" type="text"  value="">
+                                                                            
+                                                                        </span>
+                                                                    </div>
+                                                                        
+                                                                   
+                                                                    <div style=" border: solid; width: 1000px;
+                                                                    margin-bottom: 16px;">
+                                                                        <span>
+                                                                            <input style="                  
+                                                                            height: 50px;  font-size: 20px;" placeholder="Nombre del titular"  id="cardHolder"  type="text" value="">
+                                                                            
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <div style="border: solid; display: flex; align-items: center; justify-content: flex-start; "">
+                                                                    <div>
+                                                                        
+                                                                            <span >
+                                                                                        <select name="mes" id="mes">
+                                                                                            <option>MM</option>
+                                                                                            <option value="enero">Enero</option>
+                                                                                            <option value="febrero">Febrero</option>
+                                                                                            <option value="marzo">Marzo</option>
+                                                                                            <option value="abril">Abril</option>
+                                                                                            <option value="mayo">Mayo</option>
+                                                                                            <option value="junio">Junio</option>
+                                                                                            <option value="julio">Julio</option>
+                                                                                            <option value="agosto">Agosto</option>
+                                                                                            <option value="septiembre">Septiembre</option>
+                                                                                            <option value="octubre">Octubre</option>
+                                                                                            <option value="noviembre">Noviembre</option>
+                                                                                            <option value="diciembre">Diciembre</option>
+                                                                                          </select>                                                        
+                                                                            </span>
+                                                                       
+                                                                            <span>
+                                                                                <select name="año" id="año">
+                                                                                    <option>YY</option>
+                                                                                    <option value="2022">2022</option>
+                                                                                    <option value="2023">2023</option>
+                                                                                    <option value="2024">2024</option>
+                                                                                    <option value="2025">2025</option>
+                                                                                    <option value="2026">2026</option>
+                                                                                    <option value="2027">2027</option>
+                                                                                    <option value="2028">2028</option>
+                                                                                    <option value="2029">2029</option>
+                                                                                    <option value="2030">2030</option>
+                                                                                    <option value="2031">2031</option>
+                                                                                    <option value="2032">2032</option>
+                                                                                    <option value="2033">2033</option>
+                                                                                    <option value="2034">2034</option>
+                                                                                    <option value="2035">2035</option>
+                                                                                    <option value="2036">2036</option>
+                                                                                    <option value="2037">2037</option>
+                                                                                    <option value="2038">2038</option>
+                                                                                    <option value="2039">2039</option>
+                                                                                    <option value="2040">2040</option>
+                                                                                    <option value="2041">2041</option>
+                                                                                    <option value="2042">2042</option>
+                                                                                    <option value="2043">2043</option>
+                                                                                    <option value="2044">2044</option>
+                                                                                    <option value="2045">2045</option>
+                                                                                    <option value="2046">2046</option>
+                                                                                    <option value="2047">2047</option>
+                                                                                    <option value="2048">2048</option>
+                                                                                    <option value="2049">2049</option>
+                                                                                    <option value="2050">2050</option>
+                                                                                  </select> 
+                                                                            </span>
+                                                                    
+                                                                    </div>
+                                                                    <div class="_2byMO MrDm1">
+                                                                        <span class="comet-input-label-wrapper">
+                                                                            <span class="comet-input-label-content">
+                                                                                <input label="CVV" placeholder="CVV" data-meta="Field" id="cvv" direction="ltr" type="text" class="comet-input" value="">
+                                
+                                                                            </span>
+                                                                            <span class="comet-input-suffix">
+                                                                                <span class="comet-icon comet-icon-info ">
+                                                                                    <svg viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor" aria-hidden="false" focusable="false">
+                                                                                    </svg>
+                                                                                </span>
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="MJn6-">
+                                                                        <button type="button">Pagar</button>
+                                                                        <button type="button" href="javascript:void(0);" onclick="ocultarTarjeta();" >Cancelar</button>
+                                                                    </div>
+                                                                </div>
+                                
+                                
+                                
+                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                               
+                                        </div>            
+                                        <!-- fin tarjeta-->
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                       
+                        <div class="_3XyWj _1rrmm" style="cursor: pointer;">
+                            <div class="_1E0MP">
+                                <div class="_1pt-x">
+                                    <label class="comet-radio _1r41D ">
+                                        <span class="comet-radio-icon">
+                                            <span class="comet-radio-circle">
+                                            </span>
+                                        </span>
+                                        <input onclick="abrirPaypal();" type="radio" class="comet-radio-input" value="">
+                                    </label>
+                                    <span class="_3NAk9">
+                                        <img class="_14Y6w " style="height: 18px;
+                                        margin-right: 5px;
+                                        line-height: 21px;" src="https://img.alicdn.com/imgextra/i2/O1CN01A5QPwQ1CJWVlb2Xpt_!!6000000000060-2-tps-271-320.png" alt="">
+                                    </span>
+                                    <span class="fIWiQ ">PayPal </span>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="_3XyWj _1rrmm" style="cursor: pointer;">
+                            <div class="_1E0MP">
+                                <div class="_1pt-x">
+                                    <label class="comet-radio _1r41D ">
+                                        <span class="comet-radio-icon">
+                                            <span class="comet-radio-circle">
+                                            </span>
+                                        </span>
+                                        <input type="radio" class="comet-radio-input" value="">
+                                    </label>
+                                    <span class="_3NAk9">
+                                        <img class="_14Y6w " style="height: 18px;
+                                        margin-right: 5px;
+                                        line-height: 21px;" src="https://img.alicdn.com/tfs/TB13GeDRAvoK1RjSZFDXXXY3pXa-129-36.png" alt="">
+                                    </span>
+                                    <span class="fIWiQ ">Mercado pago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="_3NBJG _3OwSi _2ceZE">
+                        <span class="_30YSV" style="font-size: 14px;">Pago 100% seguro con</span>
+                        <img style="    margin-left: 10px;
+                        margin-right: 0;" src="https://gw.alicdn.com/imgextra/i2/O1CN01mqpoWK1Vj9KCGJEs4_!!6000000002688-2-tps-216-49.png" class="vuFQ7 _3y00Q " alt="remind">
+                    </div>
+                    <div id="payment-botton-section" class="_1q-sc _2NNuG _7wBhw">
+                        <div class="_3z0rM"><div class="_3NBJG _3OwSi _2ceZE">
+                            <img style="flex: 0 1;
+                            height: 16px;
+                            margin-right: 10px;" src="https://gw.alicdn.com/imgextra/i3/O1CN01H1wAZx1mDrgeaQ1O8_!!6000000004921-2-tps-56-64.png" class="vuFQ7 " alt="remind">
+                            <span class="_30YSV" style="font-size: 11px; color: rgb(102, 102, 102);">Tu información de pago está segura con nosotros</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- fin formulario pago-->
+            </div>
+            <!-- fin select metodo de pago-->
+
         </div>
     </div>
     <!--fin div carrito-->
