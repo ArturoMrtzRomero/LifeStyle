@@ -1,10 +1,4 @@
 
-function pagar() {
-    console.log( "Ejecutando función test()" );
-    document.write("Pago realizado con exito....");
-}
-
-
 function abrirPaypal() {
 console.log( "Ejecutando función test()" );
 window.open("https://www.paypal.com/mx/signin");  
@@ -38,6 +32,19 @@ function ocultarPaypal() {
     var checkbox = document.getElementById("ckeckPaypal"); // Aqui seleccionas tu checkbox.
     checkbox.checked=false;
                                                 
+}
+
+function borrarCarrito(){
+    while(listaPlatillos.firstChild){
+        listaPlatillos.removeChild(listaPlatillos.firstChild);
+    }
+    vaciarLocalStorage();
+    alert("Pago realizado con exito... \n\ncompra realizada con exito... ");
+    document.getElementById('premio').style.display = 'none';
+    var checkbox = document.getElementById("ckeckTarjeta"); // Aqui seleccionas tu checkbox.
+    checkbox.checked=false;
+    
+    return false;
 }
 
                                        
