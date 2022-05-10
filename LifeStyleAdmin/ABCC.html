@@ -1,5 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
+  <script src="js/abcc.js">
+  </script>
+  
+  <style type="text/css">
+      #premio{
+          display: none;
+      }
+      #editarProducto{
+        display: none;
+      }
+      
+      #usuario{
+        display: none;
+      }
+      #editarUsuario{
+        display: none;
+      }
+
+      #orden{
+        display: none;
+      }
+      #editarOrden{
+        display: none;
+      }
+
+  </style>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -854,10 +881,11 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+
             <!-- TABLE: LATEST ORDERS -->
             <div class="card">
               <div class="card-header border-transparent">
-                <h3 class="card-title">Alta de productos</h3>
+                <h3 class="card-title">Productos</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -871,7 +899,7 @@
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <div class="table-responsive">
-                  <table class="table m-0">
+                  <table class="table m-0" >
                     <thead>
                     <tr>
                       <th>ID Producto</th>
@@ -943,19 +971,102 @@
                 <!-- /.table-responsive -->
               </div>
               <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Realizar una nueva orden</a>
-                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
+              <div class="card-footer clearfix" style="margin: auto;">
+                <a href="javascript:void(0)" id="agregarProducto" class="btn btn-sm btn-info float-left" onclick="agregarProducto();">Agregar Producto</a>
+                    <!-- tablas agregar producto -->
+    <table class="table" id="premio" style="border: solid; border-color:  #98c8ff; border-radius: 5px; ">
+      <thead>
+        <tr>
+          <th>Nombre del Producto</th>
+          <th>Estatus</th>
+          <th>Fecha de registro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input placeholder="Producto"></input>
+          </td>
+          <td>
+            <select>
+              <option>Liberada</option>
+              <option>en proceso</option>
+              <option>Pendiente</option>
+              <option>Rechazada</option>
+            </select>
+          </td>
+          <th>
+            <input placeholder="DD / MM / AAAA"></input>
+          </th>
+        </tr>
+        <tr>
+
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info">Guardar</a>
+          </td>
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info" onclick="ocultarProductos();">Cancelar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<!-- fin tablas agregar producto -->
+                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Ver todos los productos</a>
+                <br>
+                <br>
+              <input placeholder="ID de Producto"></input>
+                <a href="javascript:void(0)" class="btn btn-sm btn-info"  onclick="editarProducto();">Editar</a>
+                           <!-- tablas agregar producto -->
+    <table class="table" id="editarProducto" style="border: solid; border-color:  #98c8ff; border-radius: 5px; ">
+      <thead>
+        <tr>
+          <th>Nombre del Producto</th>
+          <th>Estatus</th>
+          <th>Fecha de registro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input placeholder="Producto"></input>
+          </td>
+          <td>
+            <select>
+              <option>Liberada</option>
+              <option>en proceso</option>
+              <option>Pendiente</option>
+              <option>Rechazada</option>
+            </select>
+          </td>
+          <th>
+            <input placeholder="DD / MM / AAAA"></input>
+          </th>
+        </tr>
+        <tr>
+
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info">Guardar</a>
+          </td>
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info" onclick="ocultarEditP();">Cancelar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<!-- fin tablas agregar producto -->
+                <a href="javascript:void(0)" class="btn btn-sm btn-info">Borrar</a>
               </div>
               <!-- /.card-footer -->
             </div>
             <!-- /.card -->
           </div>
           <!-- /.col -->
+
+
             <!-- TABLE: LATEST ORDERS -->
             <div class="card">
                 <div class="card-header border-transparent">
-                  <h3 class="card-title">Alta de clientes</h3>
+                  <h3 class="card-title">Clientes</h3>
   
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -1041,9 +1152,90 @@
                   <!-- /.table-responsive -->
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer clearfix">
-                  <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Realizar una nueva alta de cliente</a>
-                  <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Ver todas las altas</a>
+                <div class="card-footer clearfix" style="margin: auto;">
+                  <a href="javascript:void(0)" class="btn btn-sm btn-info" id="agregarUsuario" onclick="agregarUsiario();">Agregar Usuario</a>
+                       <!-- tablas agregar usuario -->
+    <table class="table" id="usuario" style="border: solid; border-color:  #98c8ff; border-radius: 5px; ">
+      <thead>
+        <tr>
+          <th>Nombre del Usuario</th>
+          <th>Estatus</th>
+          <th>Fecha de registro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input placeholder="Usuario"></input>
+          </td>
+          <td>
+            <select>
+              <option>Liberada</option>
+              <option>en proceso</option>
+              <option>Pendiente</option>
+              <option>Rechazada</option>
+            </select>
+          </td>
+          <th>
+            <input placeholder="DD / MM / AAAA"></input>
+          </th>
+        </tr>
+        <tr>
+
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info">Guardar</a>
+          </td>
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info" onclick="ocultarUsuario();">Cancelar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<!-- fin tablas agregar usuario -->
+                  <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Ver todos los clientes</a>
+                  <br>
+                  <br>
+                <input placeholder="ID de Producto"></input>
+                  <a href="javascript:void(0)" onclick="editarUsuario();" class="btn btn-sm btn-info">Editar</a>
+                   <!-- tablas editar usuario -->
+    <table class="table" id="editarUsuario" style="border: solid; border-color:  #98c8ff; border-radius: 5px; ">
+      <thead>
+        <tr>
+          <th>Nombre del Usuario</th>
+          <th>Estatus</th>
+          <th>Fecha de registro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input placeholder="Usuario"></input>
+          </td>
+          <td>
+            <select>
+              <option>Liberada</option>
+              <option>en proceso</option>
+              <option>Pendiente</option>
+              <option>Rechazada</option>
+            </select>
+          </td>
+          <th>
+            <input placeholder="DD / MM / AAAA"></input>
+          </th>
+        </tr>
+        <tr>
+
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info">Guardar</a>
+          </td>
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info" onclick="ocultarEditU();">Cancelar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<!-- fin tablas editar usuario -->
+                  <a href="javascript:void(0)" class="btn btn-sm btn-info">Borrar</a>
                 </div>
                 <!-- /.card-footer -->
               </div>
@@ -1139,9 +1331,90 @@
                   <!-- /.table-responsive -->
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer clearfix">
-                  <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Realizar una nueva orden</a>
+                <div class="card-footer clearfix" style="margin: auto;">
+                  <a href="javascript:void(0)" onclick="agregarOrden();" class="btn btn-sm btn-info float-left">Agregar orden de compra</a>
+                   <!-- tablas agregar orden -->
+    <table class="table" id="orden" style="border: solid; border-color:  #98c8ff; border-radius: 5px; ">
+      <thead>
+        <tr>
+          <th>Nombre de la Orden</th>
+          <th>Estatus</th>
+          <th>Fecha de registro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input placeholder="Orden"></input>
+          </td>
+          <td>
+            <select>
+              <option>Liberada</option>
+              <option>en proceso</option>
+              <option>Pendiente</option>
+              <option>Rechazada</option>
+            </select>
+          </td>
+          <th>
+            <input placeholder="DD / MM / AAAA"></input>
+          </th>
+        </tr>
+        <tr>
+
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info">Guardar</a>
+          </td>
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info" onclick="ocultarOrden();">Cancelar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<!-- fin tabla orden -->
                   <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Ver todas las ordenes</a>
+                  <br>
+                  <br>
+                <input placeholder="ID de Producto"></input>
+                  <a href="javascript:void(0)" onclick="editarOrden();" class="btn btn-sm btn-info">Editar</a>
+                    <!-- tablas editar Orden -->
+    <table class="table" id="editarOrden" style="border: solid; border-color:  #98c8ff; border-radius: 5px; ">
+      <thead>
+        <tr>
+          <th>Nombre de la Oden</th>
+          <th>Estatus</th>
+          <th>Fecha de registro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input placeholder="Orden"></input>
+          </td>
+          <td>
+            <select>
+              <option>Liberada</option>
+              <option>en proceso</option>
+              <option>Pendiente</option>
+              <option>Rechazada</option>
+            </select>
+          </td>
+          <th>
+            <input placeholder="DD / MM / AAAA"></input>
+          </th>
+        </tr>
+        <tr>
+
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info">Guardar</a>
+          </td>
+          <td>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info" onclick="ocultarEditO();">Cancelar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<!-- fin tablas editar orden -->
+                  <a href="javascript:void(0)" class="btn btn-sm btn-info">Borrar</a>
                 </div>
                 <!-- /.card-footer -->
               </div>
