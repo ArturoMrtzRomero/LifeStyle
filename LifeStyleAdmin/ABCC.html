@@ -977,16 +977,34 @@
     <table class="table" id="premio" style="border: solid; border-color:  #98c8ff; border-radius: 5px; ">
       <thead>
         <tr>
+          <th>ID del Producto</th>
           <th>Nombre del Producto</th>
-          <th>Estatus</th>
-          <th>Fecha de registro</th>
+          <th>Precio</th>
+          <th>Stock</th>
+        </tr>
+        <tr>
+          <td>
+            <input placeholder="ID"></input>
+          </td>
+          <td>
+            <input placeholder="Producto"></input>
+          </td>
+          <td>
+            <input placeholder="Precio"></input>
+          </td>
+          <td>
+            <input placeholder="Stock"></input>
+          </td>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>
-            <input placeholder="Producto"></input>
-          </td>
+          <th>Estatus</th>
+          <th>Reseña</th>
+          <th>Fecha de registro</th>
+          <th>Categoria</th>
+        </tr>
+        <tr>
           <td>
             <select>
               <option>Liberada</option>
@@ -995,9 +1013,15 @@
               <option>Rechazada</option>
             </select>
           </td>
-          <th>
+          <td>
+            <input placeholder="Reseña"></input>
+          </td>
+          <td>
             <input placeholder="DD / MM / AAAA"></input>
-          </th>
+          </td>
+          <td>
+            <input placeholder="ID"></input>
+          </td>
         </tr>
         <tr>
 
@@ -1016,20 +1040,38 @@
                 <br>
               <input placeholder="ID de Producto"></input>
                 <a href="javascript:void(0)" class="btn btn-sm btn-info"  onclick="editarProducto();">Editar</a>
-                           <!-- tablas agregar producto -->
+                           <!-- tablas editar producto -->
     <table class="table" id="editarProducto" style="border: solid; border-color:  #98c8ff; border-radius: 5px; ">
       <thead>
         <tr>
+          <th>ID del Producto</th>
           <th>Nombre del Producto</th>
-          <th>Estatus</th>
-          <th>Fecha de registro</th>
+          <th>Precio</th>
+          <th>Stock</th>
+        </tr>
+        <tr>
+          <td>
+            <input placeholder="ID"></input>
+          </td>
+          <td>
+            <input placeholder="Producto"></input>
+          </td>
+          <td>
+            <input placeholder="Precio"></input>
+          </td>
+          <td>
+            <input placeholder="Stock"></input>
+          </td>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>
-            <input placeholder="Producto"></input>
-          </td>
+          <th>Estatus</th>
+          <th>Reseña</th>
+          <th>Fecha de registro</th>
+          <th>Categoria</th>
+        </tr>
+        <tr>
           <td>
             <select>
               <option>Liberada</option>
@@ -1038,11 +1080,16 @@
               <option>Rechazada</option>
             </select>
           </td>
-          <th>
+          <td>
+            <input placeholder="Reseña"></input>
+          </td>
+          <td>
             <input placeholder="DD / MM / AAAA"></input>
-          </th>
+          </td>
+          <td>
+            <input placeholder="ID"></input>
+          </td>
         </tr>
-        <tr>
 
           <td>
             <a href="javascript:void(0)" class="btn btn-sm btn-info">Guardar</a>
@@ -1053,7 +1100,7 @@
         </tr>
       </tbody>
     </table>
-<!-- fin tablas agregar producto -->
+<!-- fin tablas editar producto -->
                 <a href="javascript:void(0)" class="btn btn-sm btn-info">Borrar</a>
               </div>
               <!-- /.card-footer -->
@@ -1243,7 +1290,7 @@
             </div>
             <!-- /.col -->
               <!-- TABLE: LATEST ORDERS -->
-              <div class="card">
+              <div class="card" style=" padding-top: 50px;;">
                 <div class="card-header border-transparent">
                   <h3 class="card-title">Ultimas ordenes de compra</h3>
   
