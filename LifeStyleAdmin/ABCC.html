@@ -3,7 +3,7 @@
 
   <script src="js/abcc.js">
   </script>
-  
+
   <style type="text/css">
       #premio{
           display: none;
@@ -11,7 +11,7 @@
       #editarProducto{
         display: none;
       }
-      
+
       #usuario{
         display: none;
       }
@@ -523,7 +523,7 @@
             <div class="card">
                 <div class="card-header border-transparent">
                   <h3 class="card-title">Clientes</h3>
-  
+
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                       <i class="fas fa-minus"></i>
@@ -539,7 +539,7 @@
                     <table class="table m-0">
                       <thead>
                       <tr>
-                        <th>ID usuario</th>
+                        <th>ID del usuario</th>
                         <th>Nombre del usuario</th>
                         <th>Estatus</th>
                         <th>Fecha</th>
@@ -614,27 +614,47 @@
     <table class="table" id="usuario" style="border: solid; border-color:  #98c8ff; border-radius: 5px; ">
       <thead>
         <tr>
+          <th>ID del Usuario</th>
           <th>Nombre del Usuario</th>
-          <th>Estatus</th>
-          <th>Fecha de registro</th>
+          <th>Apellidos</th>
+          <th>Email</th>
+          <th>Password</th>
         </tr>
-      </thead>
-      <tbody>
         <tr>
+          <td>
+            <input placeholder="ID"></input>
+          </td>
           <td>
             <input placeholder="Usuario"></input>
           </td>
           <td>
+            <input placeholder="Apellidos"></input>
+          </td>
+          <td>
+            <input placeholder="Email"></input>
+          </td>
+          <td>
+            <input placeholder="Password"></input>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Estatus</th>
+          <th>Fecha de registro</th>
+        </tr>
+        <tr>
+          <td>
             <select>
               <option>Liberada</option>
-              <option>en proceso</option>
+              <option>En proceso</option>
               <option>Pendiente</option>
               <option>Rechazada</option>
             </select>
           </td>
-          <th>
+          <td>
             <input placeholder="DD / MM / AAAA"></input>
-          </th>
+          </td>
         </tr>
         <tr>
 
@@ -655,18 +675,38 @@
                   <a href="javascript:void(0)" onclick="editarUsuario();" class="btn btn-sm btn-info">Editar</a>
                    <!-- tablas editar usuario -->
     <table class="table" id="editarUsuario" style="border: solid; border-color:  #98c8ff; border-radius: 5px; ">
-      <thead>
+      <<thead>
         <tr>
+          <th>ID del Usuario</th>
           <th>Nombre del Usuario</th>
-          <th>Estatus</th>
-          <th>Fecha de registro</th>
+          <th>Apellidos</th>
+          <th>Email</th>
+          <th>Password</th>
+        </tr>
+        <tr>
+          <td>
+            <input placeholder="ID"></input>
+          </td>
+          <td>
+            <input placeholder="Usuario"></input>
+          </td>
+          <td>
+            <input placeholder="Apellidos"></input>
+          </td>
+          <td>
+            <input placeholder="Email"></input>
+          </td>
+          <td>
+            <input placeholder="Password"></input>
+          </td>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>
-            <input placeholder="Usuario"></input>
-          </td>
+          <th>Estatus</th>
+          <th>Fecha de registro</th>
+        </tr>
+        <tr>
           <td>
             <select>
               <option>Liberada</option>
@@ -675,11 +715,10 @@
               <option>Rechazada</option>
             </select>
           </td>
-          <th>
+          <td>
             <input placeholder="DD / MM / AAAA"></input>
-          </th>
+          </td>
         </tr>
-        <tr>
 
           <td>
             <a href="javascript:void(0)" class="btn btn-sm btn-info">Guardar</a>
@@ -703,7 +742,7 @@
               <div class="card" style=" padding-top: 50px;;">
                 <div class="card-header border-transparent">
                   <h3 class="card-title">Ultimas ordenes de compra</h3>
-  
+
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                       <i class="fas fa-minus"></i>
@@ -828,7 +867,7 @@
 =======
 >>>>>>> cbcbc6fbc04f15b7586aa9132a5c6975e7518ada
 
-  
+
   <!-- Main Footer -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">LIFESTYLE</a>.</strong>
