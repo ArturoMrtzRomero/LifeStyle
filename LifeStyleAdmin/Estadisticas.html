@@ -13,6 +13,16 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+  <style>
+	.leyendaH {text-align:center;}
+	.leyenda  ul {list-style-type:none;padding:0 10px;}
+	.leyendaH ul {display:inline-block;}
+	.leyenda  ul>li {font-size:14px;}
+	.leyendaH ul>li {float:left;margin-right:10px;}
+	.leyenda  ul>li>span {width:12px;height:12px;display:inline-block;margin-right:3px;}
+	</style>
+
 </head>
 <!--
 `body` tag options:
@@ -22,6 +32,8 @@
 
   * sidebar-collapse
   * sidebar-mini
+  style="background-color: #343a40;"
+  background-color: #343a40;
 -->
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -261,12 +273,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard </h1>
+            <h1 class="m-0">Estadisticas </h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-              <li class="breadcrumb-item ">Dashboard </li>
+              <li class="breadcrumb-item ">Estadisticas </li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -274,11 +286,11 @@
     </div>
     <!-- /.content-header -->
 
-    <div class="right_col" role="main">
-      <div class="row" style="display: inline-block;">
-          <div class=" top_tiles" style="margin: 10px 0;">
+    <div class="right_col" role="main" style="padding-left: 10px; ">
+      <div class="row">
+          <div class=" top_tiles" style="display: flex; width: 100%; padding: 20px;">
               <div class="col-md-3 col-sm-3  tile">
-                  <span>Total Sessions</span>
+                  <span>Total Usuarios</span>
                   <h2>231,809</h2>
                   <span class="sparkline_one" style="height: 160px;">
                       <canvas width="200" height="60"
@@ -286,13 +298,14 @@
                   </span>
               </div>
               <div class="col-md-3 col-sm-3  tile">
-                  <span>Total Revenue</span>
-                  <h2>$ 231,809</h2>
+                  <span>Total ventas</span>
+                  <h2>$231,809</h2>
                   <span class="sparkline_one" style="height: 160px;">
                       <canvas width="200" height="60"
                           style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
                   </span>
               </div>
+            
               <div class="col-md-3 col-sm-3  tile">
                   <span>Total Sessions</span>
                   <h2>231,809</h2>
@@ -302,7 +315,7 @@
                   </span>
               </div>
               <div class="col-md-3 col-sm-3  tile">
-                  <span>Total Sessions</span>
+                  <span>Total productos</span>
                   <h2>231,809</h2>
                   <span class="sparkline_one" style="height: 160px;">
                       <canvas width="200" height="60"
@@ -311,19 +324,179 @@
               </div>
           </div>
       </div>
+
+      <div style="float:left;margin-right:50px;">
+        <canvas id="canvas1"></canvas>
+        <div id="leyenda1" class="leyenda"></div>
+    </div>
+     
+    <div style="float:left;">
+        <canvas id="canvas2"></canvas>
+        <div id="leyenda2" class="leyenda leyendaH"></div>
+    </div>
+      <script>
+        var miPastel=function(canvasId,width,height,valores) {
+            this.canvas=document.getElementById(canvasId);;
+            this.canvas.width=width;
+            this.canvas.height=height;
+            this.radio=Math.min(this.canvas.width/2,this.canvas.height/2)
+            this.context=this.canvas.getContext("2d");
+            this.valores=valores;
+            this.tamanoDonut=0;
+         
+            /**
+             * Dibuja un gráfico de pastel
+             */
+            this.dibujar=function() {
+                this.total=this.getTotal();
+                var valor=0;
+                var inicioAngulo=0;
+                var angulo=0;
+         
+                // creamos los quesos del pastel
+                for(var i in this.valores)
+                {
+                    valor=valores[i]["valor"];
+                    color=valores[i]["color"];
+                    angulo=2*Math.PI*valor/this.total;
+         
+                    this.context.fillStyle=color;
+                    this.context.beginPath();
+                    this.context.moveTo(this.canvas.width/2, this.canvas.height/2);
+                    this.context.arc(this.canvas.width/2, this.canvas.height/2, this.radio, inicioAngulo, (inicioAngulo+angulo));
+                    this.context.closePath();
+                    this.context.fill();
+                    inicioAngulo+=angulo;
+                }
+            }
+         
+            /**
+             * Dibuja un gráfico de pastel con una redonda en medio en modo de donut
+             * Tiene que recibir:
+             *	el tamaño de la redonda central (0 no hay redonda - 1 es todo)
+             *	el color de la redonda
+             */
+            this.dibujarDonut=function(tamano,color) {
+                this.tamanoDonut=tamano;
+                this.dibujar();
+         
+                // creamos un circulo del color recibido en medio
+                this.context.fillStyle=color;
+                this.context.beginPath();
+                this.context.moveTo(this.canvas.width/2, this.canvas.height/2);
+                this.context.arc(this.canvas.width/2, this.canvas.height/2, this.radio*tamano, 0, 2*Math.PI);
+                this.context.closePath();
+                this.context.fill();
+            }
+         
+            /**
+             * Pone el tanto por ciento de cada uno de los valores
+             * Tiene que recibir:
+             *	el color del texto
+             */
+            this.ponerPorCiento=function(color){
+                var valor=0;
+                var etiquetaX=0;
+                var etiquetaY=0;
+                var inicioAngulo=0;
+                var angulo=0;
+                var texto="";
+                var incrementar=0;
+         
+                // si hemos dibujado un donut, tenemos que incrementar el valor del radio
+                // para que quede centrado
+                if(this.tamanoDonut)
+                    incrementar=(this.radio*this.tamanoDonut)/2;
+         
+                this.context.font="bold 12pt Calibri";
+                this.context.fillStyle=color;
+                for(var i in this.valores)
+                {
+                    valor=valores[i]["valor"];
+                    angulo=2*Math.PI*valor/this.total;
+         
+                    // calculamos la posición del texto
+                    etiquetaX=this.canvas.width/2+(incrementar+this.radio/2)*Math.cos(inicioAngulo+angulo/2);
+                    etiquetaY=this.canvas.height/2+(incrementar+this.radio/2)*Math.sin(inicioAngulo+angulo/2);
+         
+                    texto=Math.round(100*valor/this.total);
+         
+                    // movemos la posición unos pixels si estamos en la parte izquierda
+                    // del pastel para que quede mas centrado
+                    if(etiquetaX<this.canvas.width/2)
+                        etiquetaX-=10;
+         
+                    // ponemos los valores
+                    this.context.beginPath();
+                    this.context.fillText(texto+"%", etiquetaX, etiquetaY);
+                    this.context.stroke();
+         
+                    inicioAngulo+=angulo;
+                }
+            }
+         
+            /**
+             * Function que devuelve la suma del total de los valores recibidos en el array
+             */
+            this.getTotal=function() {
+                var total=0;
+                for(var i in this.valores)
+                {
+                    total+=valores[i]["valor"];
+                }
+                return total;
+            }
+         
+            /**
+             * Función que devuelve una lista (<ul><li>) con la leyenda
+             * Tiene que recibir el id donde poner la leyenda
+             */
+            this.ponerLeyenda=function(leyendaId) {
+                var codigoHTML="<ul class='leyenda'>";
+         
+                for(var i in this.valores)
+                {
+                    codigoHTML+="<li><span style='background-color:"+valores[i]["color"]+"'></span>"+i+"</li>";
+                }
+                codigoHTML+="</ul>";
+                document.getElementById(leyendaId).innerHTML=codigoHTML;
+            }
+        }
+         
+        // definimos los valores de nuestra gráfica
+        var valores={
+            "Usuario":{valor:10,color:"#D59B8F"},
+            "Ventas":{valor:23,color:"#8F9DD5"},
+            "Visitas":{valor:18,color:"#7BDBDE"},
+            "Productos":{valor:12,color:"#24C858"},
+            "Clientes":{valor:30,color:"#BB64E6"}
+        }
+         
+        // generamos el primer pastel
+        var pastel=new miPastel("canvas1",300,300,valores);
+        pastel.dibujar();
+        pastel.ponerPorCiento("white");
+        pastel.ponerLeyenda("leyenda1");
+         
+        // generamos el segundo pastel
+        var pastel=new miPastel("canvas2",300,300,valores);
+        pastel.dibujarDonut(0.5,"white");
+        pastel.ponerPorCiento("white");
+        pastel.ponerLeyenda("leyenda2");
+        </script>
       <br />
       <div class="row">
           <div class="col-md-12 col-sm-12 ">
               <div class="dashboard_graph x_panel">
                   <div class="x_title">
                       <div class="col-md-6">
-                          <h3>Network Activities <small>Graph title sub-title</small></h3>
+                          <h3>Gafica Estadisticas<small></small></h3>
                       </div>
                       <div class="col-md-6">
                           <div id="reportrange" class="pull-right"
                               style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid rgb(0, 0, 0)">
                               <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                              <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                              <span>Enero 21, 2022 - Junio 1, 2022</span> <b class="caret"></b>
                           </div>
                       </div>
                   </div>
@@ -335,11 +508,14 @@
               </div>
           </div>
       </div>
+    <br/>
+<br/>
+<br/>
       <div class="row">
           <div class="col-md-4 col-sm-6 ">
               <div class="x_panel fixed_height_320">
                   <div class="x_title">
-                      <h2>App Devices <small>Sessions</small></h2>
+                      <h2>Dispositivos <small>Sesiones</small></h2>
                       <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -347,8 +523,8 @@
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#">Settings 1</a>
-                                  <a class="dropdown-item" href="#">Settings 2</a>
+                                  <a class="dropdown-item" href="#">Configuracion 1</a>
+                                  <a class="dropdown-item" href="#">Configuracion 2</a>
                               </div>
                           </li>
                           <li><a class="close-link"><i class="fa fa-close"></i></a>
@@ -357,7 +533,7 @@
                       <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                      <h4>App Versions</h4>
+                      <h4>App Version</h4>
                       <div class="widget_summary">
                           <div class="w_left w_25">
                               <span>1.5.2</span>
@@ -366,7 +542,7 @@
                               <div class="progress">
                                   <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60"
                                       aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-                                      <span class="sr-only">60% Complete</span>
+                                      <span class="sr-only">60% Completo</span>
                                   </div>
                               </div>
                           </div>
@@ -383,7 +559,7 @@
                               <div class="progress">
                                   <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60"
                                       aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                      <span class="sr-only">60% Complete</span>
+                                      <span class="sr-only">60% Completo</span>
                                   </div>
                               </div>
                           </div>
@@ -400,7 +576,7 @@
                               <div class="progress">
                                   <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60"
                                       aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                                      <span class="sr-only">60% Complete</span>
+                                      <span class="sr-only">60% Completo</span>
                                   </div>
                               </div>
                           </div>
@@ -417,7 +593,7 @@
                               <div class="progress">
                                   <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60"
                                       aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-                                      <span class="sr-only">60% Complete</span>
+                                      <span class="sr-only">60% Completo</span>
                                   </div>
                               </div>
                           </div>
@@ -434,7 +610,7 @@
                               <div class="progress">
                                   <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60"
                                       aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
-                                      <span class="sr-only">60% Complete</span>
+                                      <span class="sr-only">60% Completo</span>
                                   </div>
                               </div>
                           </div>
@@ -449,7 +625,7 @@
           <div class="col-md-4 col-sm-6 ">
               <div class="x_panel tile fixed_height_320">
                   <div class="x_title">
-                      <h2>Daily users <small>Sessions</small></h2>
+                      <h2>Sesion diaria <small>usuarios</small></h2>
                       <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -457,8 +633,8 @@
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#">Settings 1</a>
-                                  <a class="dropdown-item" href="#">Settings 2</a>
+                                  <a class="dropdown-item" href="#">configuracion 1</a>
+                                  <a class="dropdown-item" href="#">configuracion 2</a>
                               </div>
                           </li>
                           <li><a class="close-link"><i class="fa fa-close"></i></a>
@@ -474,10 +650,10 @@
                               </th>
                               <th>
                                   <div class="col-lg-7 col-md-7 col-sm-7 ">
-                                      <p class="">Device</p>
+                                      <p class="">Dispositivos</p>
                                   </div>
                                   <div class="col-lg-5 col-md-5 col-sm-5 ">
-                                      <p class="">Progress</p>
+                                      <p class="">Progreso</p>
                                   </div>
                               </th>
                           </tr>
@@ -508,13 +684,13 @@
                                       </tr>
                                       <tr>
                                           <td>
-                                              <p><i class="fa fa-square aero"></i>Symbian </p>
+                                              <p><i class="fa fa-square aero"></i>Iphone </p>
                                           </td>
                                           <td>15%</td>
                                       </tr>
                                       <tr>
                                           <td>
-                                              <p><i class="fa fa-square red"></i>Others </p>
+                                              <p><i class="fa fa-square red"></i>Otros </p>
                                           </td>
                                           <td>30%</td>
                                       </tr>
@@ -528,7 +704,7 @@
           <div class="col-md-4 col-sm-6 ">
               <div class="x_panel fixed_height_320">
                   <div class="x_title">
-                      <h2>Profile Settings <small>Sessions</small></h2>
+                      <h2>Ajustes Perfil <small>Sesion</small></h2>
                       <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -536,8 +712,8 @@
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#">Settings 1</a>
-                                  <a class="dropdown-item" href="#">Settings 2</a>
+                                  <a class="dropdown-item" href="#">Configuracion 1</a>
+                                  <a class="dropdown-item" href="#">Configuracion 2</a>
                               </div>
                           </li>
                           <li><a class="close-link"><i class="fa fa-close"></i></a>
@@ -545,289 +721,35 @@
                       </ul>
                       <div class="clearfix"></div>
                   </div>
+                  
                   <div class="x_content">
                       <div class="dashboard-widget-content">
                           <ul class="quick-list">
-                              <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a></li>
-                              <li><i class="fa fa-thumbs-up"></i><a href="#">Favorites</a></li>
-                              <li><i class="fa fa-calendar-o"></i><a href="#">Activities</a></li>
-                              <li><i class="fa fa-cog"></i><a href="#">Settings</a></li>
-                              <li><i class="fa fa-area-chart"></i><a href="#">Logout</a></li>
+                              <li><i class="fa fa-line-chart"></i><a href="#">Logros</a></li>
+                              <li><i class="fa fa-thumbs-up"></i><a href="#">Favoritos</a></li>
+                              <li><i class="fa fa-calendar-o"></i><a href="#">Actividades</a></li>
+                              <li><i class="fa fa-cog"></i><a href="#">Ajustes</a></li>
+                              <li><i class="fa fa-area-chart"></i><a href="#">Log out</a></li>
                           </ul>
-                          <div class="sidebar-widget">
-                              <h4>Profile Completion</h4>
-                              <canvas width="150" height="80" id="chart_gauge_01" class=""
-                                  style="width: 160px; height: 100px;"></canvas>
-                              <div class="goal-wrapper">
-                                  <span id="gauge-text" class="gauge-value gauge-chart pull-left">0</span>
-                                  <span class="gauge-value pull-left">%</span>
-                                  <span id="goal-text" class="goal-value pull-right">100%</span>
-                              </div>
-                          </div>
+                        <div class="x_content">
+                            <div class="dashboard-widget-content">
+                                <ul class="quick-list">
+                                    <li><i class="fa fa-bars"></i><a href="#">Suscripcion</a></li>
+                                    <li><i class="fa fa-bar-chart"></i><a href="#">Auto renovación</a> </li>
+                                    <li><i class="fa fa-support"></i><a href="#">Mesa de ayuda</a> </li>
+                                    <li><i class="fa fa-heart"></i><a href="#">Donaciones</a> </li>
+                                </ul>
+                            </div>
+                        </div>
                       </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4 col-sm-6  widget_tally_box">
-              <div class="x_panel">
-                  <div class="x_title">
-                      <h2>User Uptake</h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                          </li>
-                          <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                  aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#">Settings 1</a>
-                                  <a class="dropdown-item" href="#">Settings 2</a>
-                              </div>
-                          </li>
-                          <li><a class="close-link"><i class="fa fa-close"></i></a>
-                          </li>
-                      </ul>
-                      <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                      <div id="graph_bar" style="width:100%; height:200px;"></div>
-                      <div class=" bg-white progress_summary">
-                          <div class="row">
-                              <div class="progress_title">
-                                  <span class="left">Escudor Wireless 1.0</span>
-                                  <span class="right">This sis</span>
-                                  <div class="clearfix"></div>
-                              </div>
-                              <div class="">
-                                  <span>SSD</span>
-                              </div>
-                              <div class="">
-                                  <div class="progress progress_sm">
-                                      <div class="progress-bar bg-green" role="progressbar"
-                                          data-transitiongoal="89"></div>
-                                  </div>
-                              </div>
-                              <div class=" more_info">
-                                  <span>89%</span>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="progress_title">
-                                  <span class="left">Mobile Access</span>
-                                  <span class="right">Smart Phone</span>
-                                  <div class="clearfix"></div>
-                              </div>
-                              <div class="">
-                                  <span>App</span>
-                              </div>
-                              <div class="">
-                                  <div class="progress progress_sm">
-                                      <div class="progress-bar bg-green" role="progressbar"
-                                          data-transitiongoal="79"></div>
-                                  </div>
-                              </div>
-                              <div class=" more_info">
-                                  <span>79%</span>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="progress_title">
-                                  <span class="left">WAN access users</span>
-                                  <span class="right">Total 69%</span>
-                                  <div class="clearfix"></div>
-                              </div>
-                              <div class="">
-                                  <span>Usr</span>
-                              </div>
-                              <div class="">
-                                  <div class="progress progress_sm">
-                                      <div class="progress-bar bg-green" role="progressbar"
-                                          data-transitiongoal="69"></div>
-                                  </div>
-                              </div>
-                              <div class=" more_info">
-                                  <span>69%</span>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6 ">
-              <div class="x_panel">
-                  <div class="x_title">
-                      <h2>Today's Weather <small>Sessions</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                          </li>
-                          <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                  aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#">Settings 1</a>
-                                  <a class="dropdown-item" href="#">Settings 2</a>
-                              </div>
-                          </li>
-                          <li><a class="close-link"><i class="fa fa-close"></i></a>
-                          </li>
-                      </ul>
-                      <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                      <div class="row">
-                          <div class="col-sm-12">
-                              <div class="temperature"><b>Monday</b>, 07:30 AM
-                                  <span>F</span>
-                                  <span><b>C</b>
-                                  </span>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-sm-4">
-                              <div class="weather-icon">
-                                  <span>
-                                      <canvas height="84" width="84" id="partly-cloudy-day"></canvas>
-                                  </span>
-                              </div>
-                          </div>
-                          <div class="col-sm-8">
-                              <div class="weather-text">
-                                  <h2>Texas
-                                      <br><i>Partly Cloudy Day</i>
-                                  </h2>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-12">
-                          <div class="weather-text pull-right">
-                              <h3 class="degrees">23</h3>
-                          </div>
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="row weather-days">
-                          <div class="col-sm-2">
-                              <div class="daily-weather">
-                                  <h2 class="day">Mon</h2>
-                                  <h3 class="degrees">25</h3>
-                                  <span>
-                                      <canvas id="clear-day" width="32" height="32">
-                                      </canvas>
-                                  </span>
-                                  <h5>15
-                                      <i>km/h</i>
-                                  </h5>
-                              </div>
-                          </div>
-                          <div class="col-sm-2">
-                              <div class="daily-weather">
-                                  <h2 class="day">Tue</h2>
-                                  <h3 class="degrees">25</h3>
-                                  <canvas height="32" width="32" id="rain"></canvas>
-                                  <h5>12
-                                      <i>km/h</i>
-                                  </h5>
-                              </div>
-                          </div>
-                          <div class="col-sm-2">
-                              <div class="daily-weather">
-                                  <h2 class="day">Wed</h2>
-                                  <h3 class="degrees">27</h3>
-                                  <canvas height="32" width="32" id="snow"></canvas>
-                                  <h5>14
-                                      <i>km/h</i>
-                                  </h5>
-                              </div>
-                          </div>
-                          <div class="col-sm-2">
-                              <div class="daily-weather">
-                                  <h2 class="day">Thu</h2>
-                                  <h3 class="degrees">28</h3>
-                                  <canvas height="32" width="32" id="sleet"></canvas>
-                                  <h5>15
-                                      <i>km/h</i>
-                                  </h5>
-                              </div>
-                          </div>
-                          <div class="col-sm-2">
-                              <div class="daily-weather">
-                                  <h2 class="day">Fri</h2>
-                                  <h3 class="degrees">28</h3>
-                                  <canvas height="32" width="32" id="wind"></canvas>
-                                  <h5>11
-                                      <i>km/h</i>
-                                  </h5>
-                              </div>
-                          </div>
-                          <div class="col-sm-2">
-                              <div class="daily-weather">
-                                  <h2 class="day">Sat</h2>
-                                  <h3 class="degrees">26</h3>
-                                  <canvas height="32" width="32" id="cloudy"></canvas>
-                                  <h5>10
-                                      <i>km/h</i>
-                                  </h5>
-                              </div>
-                          </div>
-                          <div class="clearfix"></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6 ">
-              <div class="x_panel fixed_height_320">
-                  <div class="x_title">
-                      <h2>Incomes <small>Sessions</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                          </li>
-                          <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                  aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#">Settings 1</a>
-                                  <a class="dropdown-item" href="#">Settings 2</a>
-                              </div>
-                          </li>
-                          <li><a class="close-link"><i class="fa fa-close"></i></a>
-                          </li>
-                      </ul>
-                      <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                      <div class="dashboard-widget-content">
-                          <ul class="quick-list">
-                              <li><i class="fa fa-bars"></i><a href="#">Subscription</a></li>
-                              <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-                              <li><i class="fa fa-support"></i><a href="#">Help Desk</a> </li>
-                              <li><i class="fa fa-heart"></i><a href="#">Donations</a> </li>
-                          </ul>
-                          <div class="sidebar-widget">
-                              <h4>Goal</h4>
-                              <canvas width="150" height="80" id="chart_gauge_02" class=""
-                                  style="width: 160px; height: 100px;"></canvas>
-                              <div class="goal-wrapper">
-                                  <span class="gauge-value pull-left">$</span>
-                                  <span id="gauge-text2" class="gauge-value pull-left">3,200</span>
-                                  <span id="goal-text2" class="goal-value pull-right">$5,000</span>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
       </div>
   </div>
 </div>
 
-
-<footer>
-  <div class="pull-right">
-      Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-  </div>
-  <div class="clearfix"></div>
-</footer>
   </div>
   <!-- /.content-wrapper -->
 
