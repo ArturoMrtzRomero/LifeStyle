@@ -1419,6 +1419,11 @@ body{
 	background: #000000;
     color: rgb(255, 255, 255);
 }
+.imagenes>img{
+    width: 300px;
+    height:200px; 
+
+}
 
 /* PRODUCTOS ============*/
 
